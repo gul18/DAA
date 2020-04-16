@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{ clrscr();
+ int profit[10], weight[10], i,j,n,size,ppw[10];
+ printf("Enter maximum size of Knapsack bag");
+ scanf("%d", &size);
+ printf("Enter number of items");
+ scanf("%d", &n);
+ printf("\n Enter profits and weights corresponding to each item:");
+ printf("\n\t PROFIT \t WEIGHT");
+ for(i=1;i<=n;i++)
+ {
+  printf("\nItem %d", i);
+  scanf("\t %d", &profit[i]);
+  scanf("\t %d", &weight[i]);
+  ppw[i]=profit[i]/weight[i];
+ }
+ printf("\n Profit per weight for each item:");
+ for(i=1;i<=n;i++)
+ {
+  printf("\n ITEM[%d]= %d",i, ppw[i]);
+ }
+ for(i=1;i<=n;i++)
+ {
+   for(j=i+1;j<=n;j++)
+   {
+     if(ppw[i]<ppw[j])
+     {
+      int t=ppw[i];
+      ppw[i]=ppw[j];
+      ppw[j]=t;
+      t=profit[i];
+      profit[i]=profit[j];
+      profit[j]=t;
+      t=weight[i];
+      weight[i]=weight[j];
+      weight[j]=t;
+     }
+   }
+ }
+int max=size;
+int tp=0;
+ for(i=1;i<=n;i++)
+ {
+   if(weight[i]<=max)
+   {
+    max=max-weight[i];
+    tp=tp+profit[i];
+   }
+ }
+ printf("\n Maximum profit is: %d", tp);
+getch();
+ }

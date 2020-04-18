@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<conio.h>
+intsource,v,e,time,visited[20],g[20][20];
+void DFS(int);
+void DFS(int i)
+{
+int j;
+visited[i]=1; //acknowledging the visited node by assigning it by 1.
+printf("%d ",i);  //printing node
+for(j=0;j<v;j++)
+  {
+if(g[i][j]==1 && visited[j]==0) /*checking if the node is visited or not*/
+DFS(j);
+  }
+}
+void main()
+{
+int i,j,v1,v2;
+clrscr();
+printf("Enter the number of vertices:");
+scanf("%d",&v);
+printf("\nEnter the number of edges:");
+scanf("%d",&e);
+for(i=0;i<v;i++)   
+   {
+for(j=0;j<v;j++)
+	{
+	g[i][j]=0;
+	}
+   }
+for(i=0;i<e;i++)      
+   {
+printf("Enter the edges (format: v1 v2) :");
+scanf("%d%d",&v1,&v2);
+g[v1][v2]=1;
+g[v2][v1]=1;
+   }
+printf("\n");
+for(i=0;i<v;i++)
+  {
+for(j=0;j<v;j++)
+      {
+	printf("%d",g[i][j]);
+      }
+printf("\n");
+  }
+printf("\nEnter the source: ");  //traversal point
+scanf("%d",&source);
+printf("\nThe traversed graph is:\n");
+DFS(source);
+getch();
+}

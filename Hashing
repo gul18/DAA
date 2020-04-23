@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<conio.h>
+#include<alloc.h>
+struct node{
+	int data;
+	node * next;
+}*bk[10]={NULL},*temp,*temp1, *new1;
+void main()
+{ clrscr();
+ int arr[20],i,n;
+ printf("Enter no of elements in array");
+ scanf("%d", &n);
+ printf("\nEnter array elements");
+ for (i=0;i<n;i++)
+ {
+ scanf("%d",&arr[i]);
+ }
+ for(i=0;i<n;i++)
+ {
+  int hkey;
+  hkey=arr[i]%10;
+  if(bk[hkey]==NULL)
+  {
+   bk[hkey]=(struct node *)malloc(sizeof(struct node));
+   bk[hkey]->data=arr[i];
+   bk[hkey]->next=NULL;
+  }
+  else
+  {
+    temp=bk[hkey];
+    while(temp->next!=NULL)
+    {
+	temp=temp->next;
+    }
+    new1=(struct node *)malloc(sizeof(struct node));
+
+    new1->data=arr[i];
+    new1->next=NULL;
+    temp->next=new1;
+ }
+}
+ for(i=0;i<=n;i++)
+ {
+  temp1=bk[i];
+  printf("\n");
+  printf("linked list at %d index :", i);
+  if(temp1!=NULL)
+  {
+  while(temp1!=NULL)
+  {
+   printf(" %d ",temp1->data);
+   temp1=temp1->next;
+  }
+  }
+  else
+  {
+   printf("NULL");
+  }
+ }
+getch();
+}
+
+

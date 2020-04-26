@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+clrscr();
+int a[20],n,x,l=0,h,i,pos,p=-1;
+printf("Enter size of array");
+scanf("%d",&n);
+printf("Enter the values of array");
+for(i=0;i<n;i++)
+{	scanf("%d",&a[i]);
+}
+printf("Enter no. to be searched");
+scanf("%d",&x);
+h=n-1;
+while((l<=h) && (x>=a[l]) && (x<=a[h]))
+{	if(l==h)
+	{	if(a[l]==x)
+		{	p=l;
+			break;
+		}
+	}
+	pos=l+((x-a[l])*(h-l))/(a[h]-a[l]);
+	if(a[pos]==x)
+	{	p=pos;
+		break;
+	}
+	else if(a[pos]<x)
+		l=pos+1;
+	else
+		h=pos-1;
+}
+if(p==-1)
+{
+	printf("No. not found in the list");
+}
+else
+{
+	printf("No. found at %d position",p+1);
+}
+getch();}
+
